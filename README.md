@@ -1,7 +1,15 @@
 # Clasificador de clases de idiomas con Groq
 
+Prototipo que transcribe clases de idiomas (audio, video o texto), detecta qué
+idioma se enseña y extrae los temas de cada clase, con los resultados en un Excel.
+Es una prueba de concepto para, más adelante, clasificar otro tipo de documentos,
+como entrevistas.
+
 Coloca audios, videos, TXT o Markdown en `entrada` y haz doble clic en
 `Clasificar clases de idiomas.cmd`.
+
+> **Nota:** el repositorio no incluye audios de ejemplo ni resultados. Usa tus
+> propios archivos; la carpeta `entrada` se crea sola en la primera ejecución.
 
 El programa distingue dos cosas diferentes:
 
@@ -87,17 +95,16 @@ El nuevo computador necesita:
 No necesitas instalar Whisper, Ollama ni FFmpeg: los modelos se ejecutan en los
 servidores de Groq.
 
-### 2. Copiar el proyecto
+### 2. Descargar el proyecto
 
-Copia la carpeta del proyecto al nuevo computador. No copies estas carpetas o
-archivos de la instalación anterior:
+En GitHub, usa **Code > Download ZIP** y descomprímelo, o clónalo con Git:
 
-- `.venv`: contiene rutas y programas preparados específicamente para el PC viejo.
-- `.env`: contiene la clave privada de Groq.
-- `salida`: contiene resultados y el registro de los archivos ya procesados.
+```powershell
+git clone <URL-de-este-repositorio>
+```
 
-Puedes copiar `entrada` si también quieres trasladar los audios o textos. Si
-prefieres comenzar vacío, crea una carpeta llamada `entrada` en el nuevo proyecto.
+Si copias el proyecto desde otro computador, no copies `.venv` (es propio de cada
+PC), `.env` (contiene la clave privada) ni `salida` (resultados anteriores).
 
 ### 3. Crear el entorno virtual
 
@@ -105,7 +112,7 @@ Abre PowerShell y entra en la carpeta donde copiaste el proyecto. Sustituye la r
 del ejemplo por la ruta real del nuevo computador:
 
 ```powershell
-Set-Location -LiteralPath "C:\ruta\al\clasificador_de_clases"
+Set-Location -LiteralPath "C:\ruta\al\clasificador-clases-idiomas"
 python --version
 python -m venv .venv
 Set-ExecutionPolicy -Scope Process Bypass
@@ -122,7 +129,8 @@ Al activarse correctamente aparece `(.venv)` al comienzo de la línea. El archiv
 
 ### 4. Configurar la clave de Groq
 
-Crea el archivo privado `.env` a partir del ejemplo:
+Crea una cuenta gratuita en <https://console.groq.com> y genera una clave en
+<https://console.groq.com/keys>. Luego crea el archivo privado `.env` a partir del ejemplo:
 
 ```powershell
 Copy-Item .env.example .env
